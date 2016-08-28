@@ -2,28 +2,20 @@
 #include "imgui-SFML.h"
 
 #include <iostream>
+#include <string>
 #include <SFML/Graphics.hpp>
 #include <SFML/System/Clock.hpp>
 #include <SFML/Window/Event.hpp>
 
 int main() {
-    static char cmd_buf[128];
+    char cmd_buf[16] = "";
+    char log_buf[128] = "";
 
-    ImVec4 color = ImVec4(0,0,0,0);
+    ImVec4 color = ImVec4(0.25f, 0.25f, 0.25f, 0);
     static float f = 0.0f;
 
     sf::RenderWindow window(sf::VideoMode(600, 600, 32), "Hello!");
-//    window.setFramerateLimit(60);
     ImGui::SFML::Init(window);
-
-//    sf::Font font;
-//    font.loadFromFile("../OpenSans-Bold.ttf");
-//    sf::Text text("Hello!", font, 11);
-
-//    text.setFillColor(sf::Color::Black);
-//    text.setCharacterSize(64);
-//    text.setPosition(window.getSize().x/2 - text.getGlobalBounds().width/2,
-//                     window.getSize().y/2 - text.getGlobalBounds().height/2);
 
     sf::Clock deltaClock;
     while(window.isOpen()){
@@ -37,14 +29,17 @@ int main() {
 
             ImGui::SFML::Update(deltaClock.restart());
 
-            ImGui::Begin("Hello, world!");
+            ImGui::Begin("Controls");
+            ImGui::PushItemWidth(-1);
 
-            ImGui::InputText("", cmd_buf, 128);
+            ImGui::InputText("", cmd_buf, 64);
 
-            if(ImGui::Button("Run")) {
-                std::cout << "RUN: " << cmd_buf << "\n";
+            if(ImGui::Button("Add to log")) {
+                if(strlen(log_buf) + strlen(cmd_buf) < 128){
+                    strcat(log_buf, cmd_buf);
+                    strcat(log_buf, "\n");
+                }
             }
-
 
             ImGui::SliderFloat("Float", &f, 0.0f, 1.0f);
             ImGui::ColorEdit3("Color", (float*)&color);
@@ -52,7 +47,19 @@ int main() {
 
             ImGui::End();
 
-            window.clear(sf::Color::Blue);
+            ImGui::Begin("Log");
+            ImGui::BeginGroup();
+
+            ImGui::PushItemWidth(-1);
+            ImGui::InputTextMultiline("Log", log_buf, 1024);
+
+            if(ImGui::Button("Clear log")) {
+                memset(&log_buf[0], 0, sizeof(log_buf));
+            }
+            ImGui::EndGroup();
+            ImGui::End();
+
+            window.clear(color);
 //            window.draw(text);
             ImGui::Render();
             window.display();
