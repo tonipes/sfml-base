@@ -1,13 +1,17 @@
 #include "imgui.h"
 #include "imgui-SFML.h"
-
+#include "logger/Logger.h"
 #include <iostream>
-#include <string>
 #include <SFML/Graphics.hpp>
-#include <SFML/System/Clock.hpp>
-#include <SFML/Window/Event.hpp>
+#include "ui/UIWindow.h"
 
 int main() {
+    logDebug("Starting main");
+
+    auto buttonGroup = new UIButtonGroup();
+    auto groupWindow = new UIGroupWindow("GroupWindow");
+    groupWindow->groups.push_back(buttonGroup);
+
     char cmd_buf[16] = "";
     char log_buf[128] = "";
 
@@ -41,6 +45,9 @@ int main() {
                 }
             }
 
+            ImGui::Checkbox("Show groupWindow", &groupWindow->visible);
+            ImGui::Checkbox("Show buttonGroup", &buttonGroup->visible);
+
             ImGui::SliderFloat("Float", &f, 0.0f, 1.0f);
             ImGui::ColorEdit3("Color", (float*)&color);
             ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
@@ -59,8 +66,12 @@ int main() {
             ImGui::EndGroup();
             ImGui::End();
 
+            groupWindow->draw();
+
+//            consoleWindow->draw();
+
             window.clear(color);
-//            window.draw(text);
+
             ImGui::Render();
             window.display();
         }
