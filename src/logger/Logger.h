@@ -1,7 +1,12 @@
+#pragma once
+
 #include <list>
 #include <string>
+#include <array>
 #include <iostream>
 #include <map>
+#include <vector>
+
 
 struct LogRow {
     int level;
@@ -11,6 +16,8 @@ struct LogRow {
 class Logger {
 public:
     static std::map<int, std::string> levels;
+    static std::map<int, std::array<float,4>> colors;
+//    static std::map<int, std::vector<float>> colors;
 
     static Logger* instance();
     void addRow(int level, std::string text, bool print=true);
@@ -21,9 +28,10 @@ public:
     void error(std::string str) { addRow(4, str.c_str()); }
 
     std::string getRowString(LogRow &row);
-
+    std::array<float, 4> getRowColor(LogRow &row);
+    std::list<LogRow*> rows;
 private:
-    std::list<LogRow> rows;
+
     Logger(){};
     Logger(Logger const&){};
     Logger& operator=(Logger const&){};

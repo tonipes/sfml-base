@@ -10,7 +10,7 @@ set(SOURCE_FILES
         src/Main.cpp
         src/logger/Logger.cpp
         src/logger/Logger.h
-        src/ui/UIWindow.h src/ui/UIGroup.h src/ui/UIElement.h)
+        src/ui/UIWindow.h src/ui/UIGroup.h src/ui/UIElement.h src/ui/UIConsoleWindow.h)
 
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules" ${CMAKE_MODULE_PATH})
 
@@ -36,4 +36,3 @@ if (OPENGL_FOUND)
   # or: target_link_libraries(${EXECUTABLE_NAME} ${OPENGL_gl_LIBRARY})
   target_link_libraries(${EXECUTABLE_NAME} m)  # if you use maths.h
 endif()
-
