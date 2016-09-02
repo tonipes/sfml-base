@@ -1,0 +1,6 @@
+[submodule "imgui-sfml"]
+	path = imgui-sfml
+	url = git@github.com:tonipes/imgui-sfml.git
+[submodule "imgui"]
+	path = imgui
+	url = git@github.com:tonipes/imgui.git

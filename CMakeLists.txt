@@ -3,7 +3,7 @@ project(cpp_clion_test)
 
 set(IMGUI_SFML_BUILD_EXAMPLES 0)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
-set(EXECUTABLE_NAME "cpp_clion_test")
+set(EXECUTABLE_NAME "sfml-base")
 set(IMGUI_ROOT "${CMAKE_SOURCE_DIR}/imgui")
 
 set(SOURCE_FILES

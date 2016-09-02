@@ -1,0 +1,25 @@
+{
+	"folders":
+	[
+		{
+			"path": ".",
+			"follow_symlinks": true
+		},
+        {
+            "path": "src"
+        }
+	],
+    "build_systems":
+    [
+        {
+            "name": "Build CMake",
+            "working_dir": "$project_path",
+            "shell_cmd": "cd build && cmake ../"
+        },
+        {
+            "name": "Build & Run",
+            "working_dir": "$project_path",
+            "shell_cmd": "cd build && cmake ../ && make && ./sfml-base"
+        }
+    ]
+}

@@ -36,3 +36,4 @@ compiling_error.txt
 .idea/
 build/
 imgui.ini
+*.sublime-workspace

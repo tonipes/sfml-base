@@ -1,10 +1,10 @@
-### SFML base project
+## SFML base project
 
-Tested with with macOS Sierra beta 
+Install sfml with 
 
-Should work with atom and [CLion](https://www.jetbrains.com/clion/)
+```
+brew install sfml
+```
 
-Some useful atom addons:
-* https://atom.io/packages/autocomplete-clang
-* https://atom.io/packages/build-cmake
-* https://atom.io/packages/linter-clang
+or your enviroment's equivalent.
+
