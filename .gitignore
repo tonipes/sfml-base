@@ -37,4 +37,4 @@ compiling_error.txt
 build/
 imgui.ini
 *.sublime-workspace
-*s.DS_Store
+*.DS_Store
